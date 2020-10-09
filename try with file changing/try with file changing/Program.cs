@@ -8,10 +8,9 @@ namespace try_with_file_changing
         static void Main()
         {
             Program pg = new Program();
-            string a = @"D:\Anime\Ajin\Season_1\";
-            DirectoryInfo d = new DirectoryInfo(@"D:\Anime\Ajin\Season_1\");
+            string a = @"D:\uTorrent download\renamed\";
+            DirectoryInfo d = new DirectoryInfo(@"D:\uTorrent download\renamed\");
             FileInfo[] infos = d.GetFiles();
-            pg.GetNumberOutOfString(infos[0].FullName);
             foreach (FileInfo f in infos)
             {
                 int num = pg.GetNumberOutOfString(f.FullName);
@@ -40,13 +39,7 @@ namespace try_with_file_changing
                     case '8':
                     case '9':
                         n++;
-                        if(n >= 4)
-                        {
-                            n = 0;
-                            goto END;
-                        }
                         numbers += names[j];
-                    END:;
                         break;
                     default:
                         if(n < 4 && n != 0)
