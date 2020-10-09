@@ -1,21 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Tatjana Nemova\\Documents\\Visual Studio 2019\\Projects\\try with file changing\\try with file changing\\try with file changing.csproj": {}
+    "D:\\visual programs\\try with file changing\\try with file changing\\try with file changing.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Tatjana Nemova\\Documents\\Visual Studio 2019\\Projects\\try with file changing\\try with file changing\\try with file changing.csproj": {
+    "D:\\visual programs\\try with file changing\\try with file changing\\try with file changing.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tatjana Nemova\\Documents\\Visual Studio 2019\\Projects\\try with file changing\\try with file changing\\try with file changing.csproj",
+        "projectUniqueName": "D:\\visual programs\\try with file changing\\try with file changing\\try with file changing.csproj",
         "projectName": "try with file changing",
-        "projectPath": "C:\\Users\\Tatjana Nemova\\Documents\\Visual Studio 2019\\Projects\\try with file changing\\try with file changing\\try with file changing.csproj",
-        "packagesPath": "C:\\Users\\Tatjana Nemova\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Tatjana Nemova\\Documents\\Visual Studio 2019\\Projects\\try with file changing\\try with file changing\\obj\\",
+        "projectPath": "D:\\visual programs\\try with file changing\\try with file changing\\try with file changing.csproj",
+        "packagesPath": "C:\\Users\\denis\\.nuget\\packages\\",
+        "outputPath": "D:\\visual programs\\try with file changing\\try with file changing\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Tatjana Nemova\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\denis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"

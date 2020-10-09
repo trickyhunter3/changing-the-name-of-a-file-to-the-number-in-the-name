@@ -8,14 +8,14 @@ namespace try_with_file_changing
         static void Main()
         {
             Program pg = new Program();
-            string a = @"C:\rename\";
-            DirectoryInfo d = new DirectoryInfo(@"C:\rename\");
+            string a = @"D:\Anime\Ajin\Season_1\";
+            DirectoryInfo d = new DirectoryInfo(@"D:\Anime\Ajin\Season_1\");
             FileInfo[] infos = d.GetFiles();
             pg.GetNumberOutOfString(infos[0].FullName);
             foreach (FileInfo f in infos)
             {
                 int num = pg.GetNumberOutOfString(f.FullName);
-                File.Move(f.FullName, a + num.ToString() + ".txt");
+                File.Move(f.FullName, a + num.ToString() + ".MKV");
             }
         }
         public int GetNumberOutOfString(string name)
@@ -24,7 +24,7 @@ namespace try_with_file_changing
             int[] converted = new int[3];
             int n = 0;
             string numbers = null;
-            string names = name.Substring(10);
+            string names = name.Substring(23);
             for (int j = 0; j < names.Length; j++) 
             {
                 switch (names[j])
@@ -54,11 +54,12 @@ namespace try_with_file_changing
                            if(numbers != null)
                             {
                                 converted[i] = Convert.ToInt32(numbers);
-                                if(converted[i] ==  640 || converted[i] == 1920)
+                                if(converted[i] ==  720 || converted[i] == 1920)
                                 {
                                     converted[i] = 0;
                                     i--;
                                 }
+                                numbers = null;
                                 i++;
                             } 
                         }
