@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
+using System.Net.NetworkInformation;
 
 namespace try_with_file_changing
 {
@@ -8,25 +10,28 @@ namespace try_with_file_changing
         static void Main()
         {
             Program pg = new Program();
-            string a = @"D:\uTorrent download\renamed\";
-            DirectoryInfo d = new DirectoryInfo(@"D:\uTorrent download\renamed\");
+            Console.Write("Enter a Path: ");
+            string path = Console.ReadLine();
+            if (path[path.Length - 1] != '\\')
+                path += '\\';
+            DirectoryInfo d = new DirectoryInfo(path);
             FileInfo[] infos = d.GetFiles();
             foreach (FileInfo f in infos)
             {
-                int num = pg.GetNumberOutOfString(f.FullName);
-                File.Move(f.FullName, a + num.ToString() + ".MKV");
+                int num = pg.GetNumberOutOfString(f.Name);
+                if(f.FullName != path + num.ToString() + ".MKV")
+                    File.Move(f.FullName, path + num.ToString() + ".MKV");
             }
         }
-        public int GetNumberOutOfString(string name)
+        public int GetNumberOutOfString(string File_name)
         {
             int i = 0;
-            int[] converted = new int[3];
-            int n = 0;
+            int[] converted = new int[2];
+            int numbers_together = 0;
             string numbers = null;
-            string names = name.Substring(23);
-            for (int j = 0; j < names.Length; j++) 
+            for (int j = 0; j < File_name.Length; j++) 
             {
-                switch (names[j])
+                switch (File_name[j])
                 {
                     case '0':
                     case '1':
@@ -38,29 +43,49 @@ namespace try_with_file_changing
                     case '7':
                     case '8':
                     case '9':
-                        n++;
-                        numbers += names[j];
+                        numbers_together++;
+                        numbers += File_name[j];
                         break;
                     default:
-                        if(n < 4 && n != 0)
+                        if(numbers_together < 4 && numbers_together != 0)
                         {
                            if(numbers != null)
                             {
-                                converted[i] = Convert.ToInt32(numbers);
-                                if(converted[i] ==  720 || converted[i] == 1920)
+                                switch (numbers)
                                 {
-                                    converted[i] = 0;
-                                    i--;
+                                    case "1":
+                                    case "2":
+                                    case "3":
+                                    case "4":
+                                    case "5":
+                                    case "6":
+                                    case "7":
+                                    case "8":
+                                    case "9":
+                                        converted[i] = 0;
+                                        i--;
+                                        goto pont;
                                 }
+                                converted[i] = Convert.ToInt32(numbers);
+                                switch (converted[i])
+                                {
+                                    case 720:
+                                    case 1080:
+                                    case 640:
+                                        converted[i] = 0;
+                                        i--;
+                                        break;
+                                }
+                            pont:;
                                 numbers = null;
                                 i++;
                             } 
                         }
-                        n = 0;
+                        numbers_together = 0;
                         break;
                 }
             }
-            return converted[0] + converted[1] + converted[2];
+            return converted[0] + converted[1];
         }
     }
 }
