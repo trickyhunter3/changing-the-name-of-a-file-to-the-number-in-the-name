@@ -9,6 +9,7 @@ namespace try_with_file_changing
     {
         static void Main()
         {
+            string file_type;
             Program pg = new Program();
             Console.Write("Enter a Path: ");
             string path = Console.ReadLine();
@@ -18,9 +19,10 @@ namespace try_with_file_changing
             FileInfo[] infos = d.GetFiles();
             foreach (FileInfo f in infos)
             {
+                file_type = '.' + f.FullName[f.FullName.Length - 3].ToString() + f.FullName[f.FullName.Length - 2].ToString() + f.FullName[f.FullName.Length - 1].ToString();
                 int num = pg.GetNumberOutOfString(f.Name);
-                if(f.FullName != path + num.ToString() + ".MKV")
-                    File.Move(f.FullName, path + num.ToString() + ".MKV");
+                if(f.FullName != path + num.ToString() + file_type)
+                    File.Move(f.FullName, path + num.ToString() + file_type);
             }
         }
         public int GetNumberOutOfString(string File_name)

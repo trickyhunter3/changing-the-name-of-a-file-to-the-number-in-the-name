@@ -24,3 +24,16 @@ D:\visual programs\try with file changing\try with file changing\obj\Debug\netco
 D:\visual programs\try with file changing\try with file changing\obj\Debug\netcoreapp3.1\try with file changing.dll
 D:\visual programs\try with file changing\try with file changing\obj\Debug\netcoreapp3.1\try with file changing.pdb
 D:\visual programs\try with file changing\try with file changing\obj\Debug\netcoreapp3.1\try with file changing.genruntimeconfig.cache
+C:\visual programs\try with file changing\try with file changing\bin\Debug\netcoreapp3.1\try with file changing.exe
+C:\visual programs\try with file changing\try with file changing\bin\Debug\netcoreapp3.1\try with file changing.deps.json
+C:\visual programs\try with file changing\try with file changing\bin\Debug\netcoreapp3.1\try with file changing.runtimeconfig.json
+C:\visual programs\try with file changing\try with file changing\bin\Debug\netcoreapp3.1\try with file changing.runtimeconfig.dev.json
+C:\visual programs\try with file changing\try with file changing\bin\Debug\netcoreapp3.1\try with file changing.dll
+C:\visual programs\try with file changing\try with file changing\bin\Debug\netcoreapp3.1\try with file changing.pdb
+C:\visual programs\try with file changing\try with file changing\obj\Debug\netcoreapp3.1\try with file changing.csprojAssemblyReference.cache
+C:\visual programs\try with file changing\try with file changing\obj\Debug\netcoreapp3.1\try with file changing.AssemblyInfoInputs.cache
+C:\visual programs\try with file changing\try with file changing\obj\Debug\netcoreapp3.1\try with file changing.AssemblyInfo.cs
+C:\visual programs\try with file changing\try with file changing\obj\Debug\netcoreapp3.1\try with file changing.csproj.CoreCompileInputs.cache
+C:\visual programs\try with file changing\try with file changing\obj\Debug\netcoreapp3.1\try with file changing.dll
+C:\visual programs\try with file changing\try with file changing\obj\Debug\netcoreapp3.1\try with file changing.pdb
+C:\visual programs\try with file changing\try with file changing\obj\Debug\netcoreapp3.1\try with file changing.genruntimeconfig.cache

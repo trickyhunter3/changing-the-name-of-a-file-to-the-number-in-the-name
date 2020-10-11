@@ -2,8 +2,7 @@
   "runtimeOptions": {
     "additionalProbingPaths": [
       "C:\\Users\\denis\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\denis\\.nuget\\packages",
-      "C:\\Microsoft\\Xamarin\\NuGet"
+      "C:\\Users\\denis\\.nuget\\packages"
     ]
   }
 }
