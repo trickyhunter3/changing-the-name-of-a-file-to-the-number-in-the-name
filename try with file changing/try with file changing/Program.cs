@@ -19,13 +19,17 @@ namespace try_with_file_changing
             DirectoryInfo d = new DirectoryInfo(path);
             FileInfo[] infos = d.GetFiles();
             //get all the file info from the folder
+            int i = 1;
             foreach (FileInfo f in infos)
             {
                 string[] splitedbydotes = f.FullName.Split('.');
                 file_type = '.' + splitedbydotes[splitedbydotes.Length -1];
                 string num = pg.GetNumberOutOfString(f.Name, file_type).ToString();
-                if(f.FullName != path + num.ToString() + file_type)
+                if (f.FullName != path + num.ToString() + file_type)
+                {
                     File.Move(f.FullName, path + num + file_type);
+                    Console.WriteLine(i + " Complete");
+                }
             }
         }
         public int GetNumberOutOfString(string File_name, string file_type)
@@ -62,6 +66,12 @@ namespace try_with_file_changing
                     default:
                         if(numbers_together != 0)
                         {
+                            if (numbers + file_type == File_name)
+                            {
+                                converted[i] = Convert.ToInt32(numbers);
+                                goto END;
+                                //if file is just a number then it just returns that number in the end
+                            }
                             converted[i] = Convert.ToInt32(numbers);
                             switch (converted[i])
                                 {
@@ -81,13 +91,9 @@ namespace try_with_file_changing
                                         number_holder = Convert.ToInt32(numbers);
                                         converted[i] = 0;
                                         i--;
-                                    if (numbers + file_type == File_name)
-                                    {
-                                        converted[i] = Convert.ToInt32(numbers);
-                                        //if file is just a number then it just returns that number in the end
-                                    }
                                     break;
                                 }
+                        END:;
                                 numbers = null;
                                 i++;
                         }
