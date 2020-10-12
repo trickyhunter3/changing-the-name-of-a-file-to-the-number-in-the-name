@@ -8,19 +8,19 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\denis\\.nuget\\packages\\": {}
+    "C:\\Users\\Tatjana Nemova\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\visual programs\\try with file changing\\try with file changing\\try with file changing.csproj",
+      "projectUniqueName": "C:\\projects\\try with file changing\\try with file changing\\try with file changing.csproj",
       "projectName": "try with file changing",
-      "projectPath": "C:\\visual programs\\try with file changing\\try with file changing\\try with file changing.csproj",
-      "packagesPath": "C:\\Users\\denis\\.nuget\\packages\\",
-      "outputPath": "C:\\visual programs\\try with file changing\\try with file changing\\obj\\",
+      "projectPath": "C:\\projects\\try with file changing\\try with file changing\\try with file changing.csproj",
+      "packagesPath": "C:\\Users\\Tatjana Nemova\\.nuget\\packages\\",
+      "outputPath": "C:\\projects\\try with file changing\\try with file changing\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\denis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Tatjana Nemova\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

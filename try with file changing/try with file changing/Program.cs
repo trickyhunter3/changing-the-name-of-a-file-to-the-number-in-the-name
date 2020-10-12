@@ -19,13 +19,14 @@ namespace try_with_file_changing
             FileInfo[] infos = d.GetFiles();
             foreach (FileInfo f in infos)
             {
-                file_type = '.' + f.FullName[f.FullName.Length - 3].ToString() + f.FullName[f.FullName.Length - 2].ToString() + f.FullName[f.FullName.Length - 1].ToString();
-                int num = pg.GetNumberOutOfString(f.Name);
+                string[] splitedbydotes = f.FullName.Split('.');
+                file_type = '.' + splitedbydotes[splitedbydotes.Length -1];
+                string num = pg.GetNumberOutOfString(f.Name, file_type).ToString();
                 if(f.FullName != path + num.ToString() + file_type)
-                    File.Move(f.FullName, path + num.ToString() + file_type);
+                    File.Move(f.FullName, path + num + file_type);
             }
         }
-        public int GetNumberOutOfString(string File_name)
+        public int GetNumberOutOfString(string File_name, string file_type)
         {
             int i = 0;
             int[] converted = new int[2];
@@ -64,6 +65,11 @@ namespace try_with_file_changing
                                     case "7":
                                     case "8":
                                     case "9":
+                                        if(numbers + file_type == File_name)
+                                        {
+                                            converted[i] = Convert.ToInt32(numbers);
+                                            goto pont;
+                                        }
                                         converted[i] = 0;
                                         i--;
                                         goto pont;
@@ -74,6 +80,7 @@ namespace try_with_file_changing
                                     case 720:
                                     case 1080:
                                     case 640:
+                                    case 2160:
                                         converted[i] = 0;
                                         i--;
                                         break;

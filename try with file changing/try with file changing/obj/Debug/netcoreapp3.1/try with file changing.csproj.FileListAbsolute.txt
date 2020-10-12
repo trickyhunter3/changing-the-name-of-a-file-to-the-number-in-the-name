@@ -37,3 +37,16 @@ C:\visual programs\try with file changing\try with file changing\obj\Debug\netco
 C:\visual programs\try with file changing\try with file changing\obj\Debug\netcoreapp3.1\try with file changing.dll
 C:\visual programs\try with file changing\try with file changing\obj\Debug\netcoreapp3.1\try with file changing.pdb
 C:\visual programs\try with file changing\try with file changing\obj\Debug\netcoreapp3.1\try with file changing.genruntimeconfig.cache
+C:\projects\try with file changing\try with file changing\bin\Debug\netcoreapp3.1\try with file changing.exe
+C:\projects\try with file changing\try with file changing\bin\Debug\netcoreapp3.1\try with file changing.deps.json
+C:\projects\try with file changing\try with file changing\bin\Debug\netcoreapp3.1\try with file changing.runtimeconfig.json
+C:\projects\try with file changing\try with file changing\bin\Debug\netcoreapp3.1\try with file changing.runtimeconfig.dev.json
+C:\projects\try with file changing\try with file changing\bin\Debug\netcoreapp3.1\try with file changing.dll
+C:\projects\try with file changing\try with file changing\bin\Debug\netcoreapp3.1\try with file changing.pdb
+C:\projects\try with file changing\try with file changing\obj\Debug\netcoreapp3.1\try with file changing.csprojAssemblyReference.cache
+C:\projects\try with file changing\try with file changing\obj\Debug\netcoreapp3.1\try with file changing.AssemblyInfoInputs.cache
+C:\projects\try with file changing\try with file changing\obj\Debug\netcoreapp3.1\try with file changing.AssemblyInfo.cs
+C:\projects\try with file changing\try with file changing\obj\Debug\netcoreapp3.1\try with file changing.csproj.CoreCompileInputs.cache
+C:\projects\try with file changing\try with file changing\obj\Debug\netcoreapp3.1\try with file changing.dll
+C:\projects\try with file changing\try with file changing\obj\Debug\netcoreapp3.1\try with file changing.pdb
+C:\projects\try with file changing\try with file changing\obj\Debug\netcoreapp3.1\try with file changing.genruntimeconfig.cache
