@@ -68,27 +68,27 @@ namespace try_with_file_changing
                                 goto END;
                                 //if file is just a number then it just returns that number in the end
                             }
-                            converted[i] = Convert.ToInt32(numbers);
-                            switch (converted[i])
+                            switch (numbers)
                                 {
-                                    case 1:
-                                    case 2:
-                                    case 3:
-                                    case 4:
-                                    case 5:
-                                    case 6:
-                                    case 7:
-                                    case 8:
-                                    case 9:
-                                    case 640:
-                                    case 720:
-                                    case 1080:
-                                    case 2160:
+                                    case "1":
+                                    case "2":
+                                    case "3":
+                                    case "4":
+                                    case "5":
+                                    case "6":
+                                    case "7":
+                                    case "8":
+                                    case "9":
+                                    case "640":
+                                    case "720":
+                                    case "1080":
+                                    case "2160":
                                         number_holder = Convert.ToInt32(numbers);
                                         converted[i] = 0;
                                         i--;
-                                    break;
+                                        goto END;
                                 }
+                            converted[i] = Convert.ToInt32(numbers);
                         END:;
                                 numbers = null;
                                 i++;
