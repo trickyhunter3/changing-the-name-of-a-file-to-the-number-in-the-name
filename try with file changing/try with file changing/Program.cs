@@ -19,17 +19,13 @@ namespace try_with_file_changing
             DirectoryInfo d = new DirectoryInfo(path);
             FileInfo[] infos = d.GetFiles();
             //get all the file info from the folder
-            int i = 1;
             foreach (FileInfo f in infos)
             {
                 string[] splitedbydotes = f.FullName.Split('.');
                 file_type = '.' + splitedbydotes[splitedbydotes.Length -1];
                 string num = pg.GetNumberOutOfString(f.Name, file_type).ToString();
                 if (f.FullName != path + num.ToString() + file_type)
-                {
                     File.Move(f.FullName, path + num + file_type);
-                    Console.WriteLine(i + " Complete");
-                }
             }
         }
         public int GetNumberOutOfString(string File_name, string file_type)
