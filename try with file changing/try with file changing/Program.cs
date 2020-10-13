@@ -32,7 +32,7 @@ namespace try_with_file_changing
         {
             // j is current index of the file_name
             int i = 0;
-            int[] converted = new int[2];
+            int converted = 0;
             //if we find a number that is episode then i++ happen so we save the episode number and 
             //on the next run when it find a season number or resoulution number it will go to 0 on the next int not on the
             //episode number itself
@@ -64,9 +64,9 @@ namespace try_with_file_changing
                         {
                             if (numbers + file_type == File_name)
                             {
-                                converted[i] = Convert.ToInt32(numbers);
+                                converted = Convert.ToInt32(numbers);
                                 goto END;
-                                //if file is just a number then it just returns that number in the end
+                                //if file is just a number then returns that number
                             }
                             switch (numbers)
                                 {
@@ -84,11 +84,10 @@ namespace try_with_file_changing
                                     case "1080":
                                     case "2160":
                                         number_holder = Convert.ToInt32(numbers);
-                                        converted[i] = 0;
                                         i--;
                                         goto END;
                                 }
-                            converted[i] = Convert.ToInt32(numbers);
+                            converted = Convert.ToInt32(numbers);
                         END:;
                                 numbers = null;
                                 i++;
@@ -97,9 +96,10 @@ namespace try_with_file_changing
                         break;
                 }
             }
-            if (converted[0] + converted[1] + number_holder == number_holder)
-                converted[0] = number_holder;
-            return converted[0] + converted[1];
+            if (converted + number_holder == number_holder)
+                return number_holder;
+            //converted + num = num that means that the season or resolution filter worked but was not necessery
+            return converted;
         }
     }
 }
