@@ -48,7 +48,6 @@ namespace try_with_file_changing
         public int GetNumberOutOfString(string File_name, string file_type)
         {
             // j is current index of the file_name
-            int i = 0;
             int converted = 0;
             //if we find a number that is episode then i++ happen so we save the episode number and 
             //on the next run when it find a season number or resoulution number it will go to 0 on the next int not on the
@@ -85,6 +84,8 @@ namespace try_with_file_changing
                                 goto END;
                                 //if file is just a number then returns that number
                             }
+                            if (numbers == "0")
+                                number_holder = 0;
                             switch (numbers)
                             {
                                 case "1":
@@ -100,14 +101,16 @@ namespace try_with_file_changing
                                 case "720":
                                 case "1080":
                                 case "2160":
+                                        if(number_holder == 0)
+                                        {
+                                        goto END;
+                                        }
                                     number_holder = Convert.ToInt32(numbers);
-                                    i--;
                                     goto END;
                             }
                             converted = Convert.ToInt32(numbers);
                         END:;
                             numbers = null;
-                            i++;
                         }
                         numbers_together = 0;
                         break;
