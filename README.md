@@ -11,4 +11,4 @@ first (it will work) but when it will reach the second it will crash because it 
 
 if you want to change all the files into "something" + number_in_the_name + file_type then just make a option like "press 1 or 2"then you do some goto or more if.
 
-please let me know if there is something to fix or some more bugs Thanks
+please let me know if there is something to fix or some more bugs Thanks (Email: workingdenniss@gmail.com)
