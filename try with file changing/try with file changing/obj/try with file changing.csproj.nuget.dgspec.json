@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\projects\\try with file changing\\try with file changing\\try with file changing.csproj": {}
+    "C:\\projects\\Changing-files-names-in-folder\\try with file changing\\try with file changing\\try with file changing.csproj": {}
   },
   "projects": {
-    "C:\\projects\\try with file changing\\try with file changing\\try with file changing.csproj": {
+    "C:\\projects\\Changing-files-names-in-folder\\try with file changing\\try with file changing\\try with file changing.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\projects\\try with file changing\\try with file changing\\try with file changing.csproj",
+        "projectUniqueName": "C:\\projects\\Changing-files-names-in-folder\\try with file changing\\try with file changing\\try with file changing.csproj",
         "projectName": "try with file changing",
-        "projectPath": "C:\\projects\\try with file changing\\try with file changing\\try with file changing.csproj",
+        "projectPath": "C:\\projects\\Changing-files-names-in-folder\\try with file changing\\try with file changing\\try with file changing.csproj",
         "packagesPath": "C:\\Users\\Tatjana Nemova\\.nuget\\packages\\",
-        "outputPath": "C:\\projects\\try with file changing\\try with file changing\\obj\\",
+        "outputPath": "C:\\projects\\Changing-files-names-in-folder\\try with file changing\\try with file changing\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Tatjana Nemova\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -52,7 +52,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

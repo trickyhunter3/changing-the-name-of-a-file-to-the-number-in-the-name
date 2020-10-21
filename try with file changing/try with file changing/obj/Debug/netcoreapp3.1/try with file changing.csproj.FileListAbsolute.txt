@@ -50,3 +50,16 @@ C:\projects\try with file changing\try with file changing\obj\Debug\netcoreapp3.
 C:\projects\try with file changing\try with file changing\obj\Debug\netcoreapp3.1\try with file changing.dll
 C:\projects\try with file changing\try with file changing\obj\Debug\netcoreapp3.1\try with file changing.pdb
 C:\projects\try with file changing\try with file changing\obj\Debug\netcoreapp3.1\try with file changing.genruntimeconfig.cache
+C:\projects\Changing-files-names-in-folder\try with file changing\try with file changing\bin\Debug\netcoreapp3.1\try with file changing.exe
+C:\projects\Changing-files-names-in-folder\try with file changing\try with file changing\bin\Debug\netcoreapp3.1\try with file changing.deps.json
+C:\projects\Changing-files-names-in-folder\try with file changing\try with file changing\bin\Debug\netcoreapp3.1\try with file changing.runtimeconfig.json
+C:\projects\Changing-files-names-in-folder\try with file changing\try with file changing\bin\Debug\netcoreapp3.1\try with file changing.runtimeconfig.dev.json
+C:\projects\Changing-files-names-in-folder\try with file changing\try with file changing\bin\Debug\netcoreapp3.1\try with file changing.dll
+C:\projects\Changing-files-names-in-folder\try with file changing\try with file changing\bin\Debug\netcoreapp3.1\try with file changing.pdb
+C:\projects\Changing-files-names-in-folder\try with file changing\try with file changing\obj\Debug\netcoreapp3.1\try with file changing.csprojAssemblyReference.cache
+C:\projects\Changing-files-names-in-folder\try with file changing\try with file changing\obj\Debug\netcoreapp3.1\try with file changing.AssemblyInfoInputs.cache
+C:\projects\Changing-files-names-in-folder\try with file changing\try with file changing\obj\Debug\netcoreapp3.1\try with file changing.AssemblyInfo.cs
+C:\projects\Changing-files-names-in-folder\try with file changing\try with file changing\obj\Debug\netcoreapp3.1\try with file changing.csproj.CoreCompileInputs.cache
+C:\projects\Changing-files-names-in-folder\try with file changing\try with file changing\obj\Debug\netcoreapp3.1\try with file changing.dll
+C:\projects\Changing-files-names-in-folder\try with file changing\try with file changing\obj\Debug\netcoreapp3.1\try with file changing.pdb
+C:\projects\Changing-files-names-in-folder\try with file changing\try with file changing\obj\Debug\netcoreapp3.1\try with file changing.genruntimeconfig.cache

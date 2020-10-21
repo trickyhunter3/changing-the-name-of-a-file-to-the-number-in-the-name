@@ -81,6 +81,7 @@ namespace try_with_file_changing
                             if (numbers + file_type == File_name)
                             {
                                 converted = Convert.ToInt32(numbers);
+                                number_holder = 0;
                                 goto END;
                                 //if file is just a number then returns that number
                             }
