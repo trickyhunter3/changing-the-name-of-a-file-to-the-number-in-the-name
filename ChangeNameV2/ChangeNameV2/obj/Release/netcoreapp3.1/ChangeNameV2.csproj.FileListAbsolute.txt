@@ -1,0 +1,13 @@
+C:\Users\denis\Documents\GitHub\changing-the-name-of-a-file-to-the-number-in-the-name\ChangeNameV2\ChangeNameV2\bin\Release\netcoreapp3.1\ChangeNameV2.exe
+C:\Users\denis\Documents\GitHub\changing-the-name-of-a-file-to-the-number-in-the-name\ChangeNameV2\ChangeNameV2\bin\Release\netcoreapp3.1\ChangeNameV2.deps.json
+C:\Users\denis\Documents\GitHub\changing-the-name-of-a-file-to-the-number-in-the-name\ChangeNameV2\ChangeNameV2\bin\Release\netcoreapp3.1\ChangeNameV2.runtimeconfig.json
+C:\Users\denis\Documents\GitHub\changing-the-name-of-a-file-to-the-number-in-the-name\ChangeNameV2\ChangeNameV2\bin\Release\netcoreapp3.1\ChangeNameV2.runtimeconfig.dev.json
+C:\Users\denis\Documents\GitHub\changing-the-name-of-a-file-to-the-number-in-the-name\ChangeNameV2\ChangeNameV2\bin\Release\netcoreapp3.1\ChangeNameV2.dll
+C:\Users\denis\Documents\GitHub\changing-the-name-of-a-file-to-the-number-in-the-name\ChangeNameV2\ChangeNameV2\bin\Release\netcoreapp3.1\ChangeNameV2.pdb
+C:\Users\denis\Documents\GitHub\changing-the-name-of-a-file-to-the-number-in-the-name\ChangeNameV2\ChangeNameV2\obj\Release\netcoreapp3.1\ChangeNameV2.csprojAssemblyReference.cache
+C:\Users\denis\Documents\GitHub\changing-the-name-of-a-file-to-the-number-in-the-name\ChangeNameV2\ChangeNameV2\obj\Release\netcoreapp3.1\ChangeNameV2.AssemblyInfoInputs.cache
+C:\Users\denis\Documents\GitHub\changing-the-name-of-a-file-to-the-number-in-the-name\ChangeNameV2\ChangeNameV2\obj\Release\netcoreapp3.1\ChangeNameV2.AssemblyInfo.cs
+C:\Users\denis\Documents\GitHub\changing-the-name-of-a-file-to-the-number-in-the-name\ChangeNameV2\ChangeNameV2\obj\Release\netcoreapp3.1\ChangeNameV2.csproj.CoreCompileInputs.cache
+C:\Users\denis\Documents\GitHub\changing-the-name-of-a-file-to-the-number-in-the-name\ChangeNameV2\ChangeNameV2\obj\Release\netcoreapp3.1\ChangeNameV2.dll
+C:\Users\denis\Documents\GitHub\changing-the-name-of-a-file-to-the-number-in-the-name\ChangeNameV2\ChangeNameV2\obj\Release\netcoreapp3.1\ChangeNameV2.pdb
+C:\Users\denis\Documents\GitHub\changing-the-name-of-a-file-to-the-number-in-the-name\ChangeNameV2\ChangeNameV2\obj\Release\netcoreapp3.1\ChangeNameV2.genruntimeconfig.cache

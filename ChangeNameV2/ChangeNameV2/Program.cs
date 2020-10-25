@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Drawing;
 using System.IO;
-using System.Net.NetworkInformation;
 
 namespace ChangeNameV2
 {
