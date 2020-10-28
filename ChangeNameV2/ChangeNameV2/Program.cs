@@ -44,12 +44,16 @@ namespace ChangeNameV2
                             file_type = '.' + splitedbydotes[^1];
                             num = pg.GetNumberOutOfString(f.Name, file_type);
                             SeasonNum = splitedbyspace[1];
-                            if (num < 500)
+                            if (num / 10 < 1)
                             {
                                 if (Convert.ToInt32(splitedbyspace[1]) < 9)
+                                {
                                     SeasonName = "S0" + SeasonNum + "E0" + num.ToString();
+                                }
                                 else
+                                {
                                     SeasonName = "S" + SeasonNum + "E0" + num.ToString();
+                                }
                             }
                             else
                             {
@@ -65,7 +69,7 @@ namespace ChangeNameV2
                             file_type = '.' + splitedbydotes[^1];
                             num = pg.GetNumberOutOfString(f.Name, file_type);
                             SeasonNum = (num / 50 + 1).ToString();
-                            if (num < 500)
+                            if (num / 10 < 1)
                             {
                                 if (Convert.ToInt32(SeasonNum) < 9)
                                     SeasonName = "S0" + SeasonNum + "E0" + num.ToString();
