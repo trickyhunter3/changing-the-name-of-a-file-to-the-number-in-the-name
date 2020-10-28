@@ -75,9 +75,9 @@ namespace ChangeNameV2
                             else
                             {
                                 if (Convert.ToInt32(SeasonNum) < 9)
-                                    SeasonName = "S0" + SeasonNum + "E0" + num.ToString();
+                                    SeasonName = "S0" + SeasonNum + "E" + num.ToString();
                                 else
-                                    SeasonName = "S" + SeasonNum + "E0" + num.ToString();
+                                    SeasonName = "S" + SeasonNum + "E" + num.ToString();
                             }
                             string NewPath = path + "Season " + SeasonNum + '\\';
                             if (!Directory.Exists(NewPath))
