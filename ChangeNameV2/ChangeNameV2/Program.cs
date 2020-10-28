@@ -54,9 +54,9 @@ namespace ChangeNameV2
                             else
                             {
                                 if (Convert.ToInt32(splitedbyspace[1]) < 9)
-                                    SeasonName = "S0" + SeasonNum + "E0" + num.ToString();
+                                    SeasonName = "S0" + SeasonNum + "E" + num.ToString();
                                 else
-                                    SeasonName = "S" + SeasonNum + "E0" + num.ToString();
+                                    SeasonName = "S" + SeasonNum + "E" + num.ToString();
                             }
                             File.Move(f.FullName, path + SeasonName + file_type);
                             Console.WriteLine(num.ToString() + " Complete");
@@ -84,7 +84,7 @@ namespace ChangeNameV2
                             {
                                 Directory.CreateDirectory(NewPath);
                                 Console.ForegroundColor = ConsoleColor.Green;
-                                Console.WriteLine(SeasonName + " folder Created");
+                                Console.WriteLine("Season " + SeasonNum + " folder Created");
                                 Console.ResetColor();
                             }
                             File.Move(f.FullName, NewPath + SeasonName + file_type);
