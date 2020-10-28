@@ -28,6 +28,8 @@ namespace ChangeNameV2
                 //get all the file info from the folder
                 foreach (FileInfo f in infos)
                 {
+                    string SeasonName;
+                    string SeasonNum;
                     int num;
                     string[] splitedbydotes = f.FullName.Split('.');
 
@@ -40,11 +42,23 @@ namespace ChangeNameV2
                         case "season":
                             file_type = '.' + splitedbydotes[^1];
                             num = pg.GetNumberOutOfString(f.Name, file_type);
-                            File.Move(f.FullName, path + num.ToString() + file_type);
+                            SeasonNum = splitedbyspace[1];
+                            if (num < 500)
+                            {
+                                if (Convert.ToInt32(splitedbyspace[1]) < 9)
+                                    SeasonName = "S0" + splitedbyspace[1] + "E0" + SeasonNum;
+                                else
+                                    SeasonName = "S" + splitedbyspace[1] + "E0" + SeasonNum;
+                            }
+                            else
+                                if (Convert.ToInt32(splitedbyspace[1]) < 9)
+                                SeasonName = "S0" + splitedbyspace[1] + "E" + SeasonNum;
+                            else
+                                SeasonName = "S" + splitedbyspace[1] + "E" + SeasonNum;
+                            File.Move(f.FullName, path + SeasonName + file_type);
                             Console.WriteLine(num.ToString() + " Complete");
                             break;
                         default:
-                            string SeasonName;
                             file_type = '.' + splitedbydotes[^1];
                             num = pg.GetNumberOutOfString(f.Name, file_type);
                             double NumOfDigits = Math.Floor(Math.Log10(num) + 1);
@@ -64,7 +78,7 @@ namespace ChangeNameV2
                             break;
                     }
                 }
-            
+
                 Console.ReadLine();
             }
             catch (DirectoryNotFoundException)
@@ -72,7 +86,7 @@ namespace ChangeNameV2
                 Console.WriteLine("Directory not found");
                 Console.ReadLine();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e);
                 Console.ReadLine();
