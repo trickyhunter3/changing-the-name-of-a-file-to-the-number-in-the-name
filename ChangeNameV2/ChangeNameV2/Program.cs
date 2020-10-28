@@ -30,6 +30,7 @@ namespace ChangeNameV2
                 {
                     string SeasonName;
                     string SeasonNum;
+
                     int num;
                     string[] splitedbydotes = f.FullName.Split('.');
 
@@ -46,33 +47,47 @@ namespace ChangeNameV2
                             if (num < 500)
                             {
                                 if (Convert.ToInt32(splitedbyspace[1]) < 9)
-                                    SeasonName = "S0" + splitedbyspace[1] + "E0" + SeasonNum;
+                                    SeasonName = "S0" + SeasonNum + "E0" + num.ToString();
                                 else
-                                    SeasonName = "S" + splitedbyspace[1] + "E0" + SeasonNum;
+                                    SeasonName = "S" + SeasonNum + "E0" + num.ToString();
                             }
                             else
+                            {
                                 if (Convert.ToInt32(splitedbyspace[1]) < 9)
-                                SeasonName = "S0" + splitedbyspace[1] + "E" + SeasonNum;
-                            else
-                                SeasonName = "S" + splitedbyspace[1] + "E" + SeasonNum;
+                                    SeasonName = "S0" + SeasonNum + "E0" + num.ToString();
+                                else
+                                    SeasonName = "S" + SeasonNum + "E0" + num.ToString();
+                            }
                             File.Move(f.FullName, path + SeasonName + file_type);
                             Console.WriteLine(num.ToString() + " Complete");
                             break;
                         default:
                             file_type = '.' + splitedbydotes[^1];
                             num = pg.GetNumberOutOfString(f.Name, file_type);
-                            double NumOfDigits = Math.Floor(Math.Log10(num) + 1);
-                            if (NumOfDigits > 2)
-                                SeasonName = "Season " + (num / 100 + 1);
+                            SeasonNum = (num / 50 + 1).ToString();
+                            if (num < 500)
+                            {
+                                if (Convert.ToInt32(SeasonNum) < 9)
+                                    SeasonName = "S0" + SeasonNum + "E0" + num.ToString();
+                                else
+                                    SeasonName = "S" + SeasonNum + "E0" + num.ToString();
+                            }
                             else
-                                SeasonName = "Season 1";
-                            string NewPath = path + SeasonName;
+                            {
+                                if (Convert.ToInt32(SeasonNum) < 9)
+                                    SeasonName = "S0" + SeasonNum + "E0" + num.ToString();
+                                else
+                                    SeasonName = "S" + SeasonNum + "E0" + num.ToString();
+                            }
+                            string NewPath = path + "Season " + SeasonNum + '\\';
                             if (!Directory.Exists(NewPath))
                             {
-                                System.IO.Directory.CreateDirectory(NewPath);
+                                Directory.CreateDirectory(NewPath);
+                                Console.ForegroundColor = ConsoleColor.Green;
                                 Console.WriteLine(SeasonName + " folder Created");
+                                Console.ResetColor();
                             }
-                            File.Move(f.FullName, NewPath + '\\' + num + file_type);
+                            File.Move(f.FullName, NewPath + SeasonName + file_type);
                             Console.WriteLine(num.ToString() + " Complete");
                             Console.WriteLine();
                             break;
