@@ -46,7 +46,11 @@ namespace ChangeNameV2
                             SeasonNum = splitedbyspace[1];
                             if (num / 10 < 1)
                             {
-                                if (Convert.ToInt32(splitedbyspace[1]) < 9)
+                                if (splitedbyspace[1] == "00" || splitedbyspace[1].ToLower() == "specials")
+                                {
+                                    SeasonName = "S" + SeasonNum + "E0" + num.ToString();
+                                }
+                                else if (Convert.ToInt32(splitedbyspace[1]) < 9)
                                 {
                                     SeasonName = "S0" + SeasonNum + "E0" + num.ToString();
                                 }
@@ -57,7 +61,11 @@ namespace ChangeNameV2
                             }
                             else
                             {
-                                if (Convert.ToInt32(splitedbyspace[1]) < 9)
+                                if (splitedbyspace[1] == "00" || splitedbyspace[1].ToLower() == "specials")
+                                {
+                                    SeasonName = "S" + SeasonNum + "E0" + num.ToString();
+                                }
+                                else if (Convert.ToInt32(splitedbyspace[1]) < 9)
                                     SeasonName = "S0" + SeasonNum + "E" + num.ToString();
                                 else
                                     SeasonName = "S" + SeasonNum + "E" + num.ToString();
