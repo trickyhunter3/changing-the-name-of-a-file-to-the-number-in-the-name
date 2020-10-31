@@ -8,25 +8,20 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\volfi\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\denis\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\volfi\\Documents\\GitHub\\changing-the-name-of-a-file-to-the-number-in-the-name\\ChangeNameV2\\ChangeNameV2\\ChangeNameV2.csproj",
+      "projectUniqueName": "C:\\Users\\denis\\Documents\\GitHub\\changing-the-name-of-a-file-to-the-number-in-the-name\\ChangeNameV2\\ChangeNameV2\\ChangeNameV2.csproj",
       "projectName": "ChangeNameV2",
-      "projectPath": "C:\\Users\\volfi\\Documents\\GitHub\\changing-the-name-of-a-file-to-the-number-in-the-name\\ChangeNameV2\\ChangeNameV2\\ChangeNameV2.csproj",
-      "packagesPath": "C:\\Users\\volfi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\volfi\\Documents\\GitHub\\changing-the-name-of-a-file-to-the-number-in-the-name\\ChangeNameV2\\ChangeNameV2\\obj\\",
+      "projectPath": "C:\\Users\\denis\\Documents\\GitHub\\changing-the-name-of-a-file-to-the-number-in-the-name\\ChangeNameV2\\ChangeNameV2\\ChangeNameV2.csproj",
+      "packagesPath": "C:\\Users\\denis\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\denis\\Documents\\GitHub\\changing-the-name-of-a-file-to-the-number-in-the-name\\ChangeNameV2\\ChangeNameV2\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\"
-      ],
       "configFilePaths": [
-        "C:\\Users\\volfi\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\denis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -63,7 +58,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
       }
     }
   }

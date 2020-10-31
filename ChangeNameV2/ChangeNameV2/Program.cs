@@ -63,7 +63,7 @@ namespace ChangeNameV2
                             {
                                 if (splitedbyspace[1] == "00" || splitedbyspace[1].ToLower() == "specials")
                                 {
-                                    SeasonName = "S" + SeasonNum + "E0" + num.ToString();
+                                    SeasonName = "S" + SeasonNum + "E" + num.ToString();
                                 }
                                 else if (Convert.ToInt32(splitedbyspace[1]) < 9)
                                     SeasonName = "S0" + SeasonNum + "E" + num.ToString();
