@@ -17,17 +17,26 @@ namespace ChangeNameV2
                 Console.Write("Enter a Path: ");
                 string path = Console.ReadLine();
                 if (path == "")
-                {
                     goto START;
-                }
                 if (path[^1] != '\\')
                     path += '\\';
+                if (path == @"C:\" ||
+                    path == @"C:\Program Files (x86)\" ||
+                    path == @"C:\Program Files\" ||
+                    path == @"C:\Windows\")
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Important folder\nDon't touch");
+                    Console.ResetColor();
+                    goto START;
+                }
                 Console.Clear();
                 DirectoryInfo d = new DirectoryInfo(path);
                 FileInfo[] infos = d.GetFiles();
                 //get all the file info from the folder
                 foreach (FileInfo f in infos)
                 {
+                    string NewPath;
                     string SeasonName;
                     string SeasonNum;
 
@@ -41,68 +50,98 @@ namespace ChangeNameV2
                     switch (splitedbyspace[0].ToLower())
                     {
                         case "season":
-                            file_type = '.' + splitedbydotes[^1];
-                            num = pg.GetNumberOutOfString(f.Name, file_type);
-                            SeasonNum = splitedbyspace[1];
-                            if (num / 10 < 1)
+                            try
                             {
-                                if (splitedbyspace[1] == "00" || splitedbyspace[1].ToLower() == "specials")
+                                file_type = '.' + splitedbydotes[^1];
+                                num = pg.GetNumberOutOfString(f.Name, file_type);
+                                SeasonNum = splitedbyspace[1];
+                                if (num / 10 < 1)
                                 {
-                                    SeasonName = "S" + SeasonNum + "E0" + num.ToString();
-                                }
-                                else if (Convert.ToInt32(splitedbyspace[1]) < 9)
-                                {
-                                    SeasonName = "S0" + SeasonNum + "E0" + num.ToString();
+                                    if (Convert.ToInt32(splitedbyspace[1]) < 9)
+                                    {
+                                        SeasonName = "S0" + SeasonNum + "E0" + num.ToString();
+                                    }
+                                    else
+                                    {
+                                        SeasonName = "S" + SeasonNum + "E0" + num.ToString();
+                                    }
                                 }
                                 else
                                 {
-                                    SeasonName = "S" + SeasonNum + "E0" + num.ToString();
+                                    if (Convert.ToInt32(splitedbyspace[1]) < 9)
+                                        SeasonName = "S0" + SeasonNum + "E" + num.ToString();
+                                    else
+                                        SeasonName = "S" + SeasonNum + "E" + num.ToString();
                                 }
+                                File.Move(f.FullName, path + SeasonName + file_type);
+                                Console.WriteLine(num.ToString() + " Complete");
+                                break;
                             }
-                            else
+                            catch (IOException)
                             {
-                                if (splitedbyspace[1] == "00" || splitedbyspace[1].ToLower() == "specials")
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                NewPath = f.DirectoryName + '\\' + "-[NameAlreadyExist]-" + '\\';
+                                if (!Directory.Exists(NewPath))
                                 {
-                                    SeasonName = "S" + SeasonNum + "E" + num.ToString();
+                                    Directory.CreateDirectory(NewPath);
+                                    Console.WriteLine("Execption Folder Created");
                                 }
-                                else if (Convert.ToInt32(splitedbyspace[1]) < 9)
-                                    SeasonName = "S0" + SeasonNum + "E" + num.ToString();
-                                else
-                                    SeasonName = "S" + SeasonNum + "E" + num.ToString();
-                            }
-                            File.Move(f.FullName, path + SeasonName + file_type);
-                            Console.WriteLine(num.ToString() + " Complete");
-                            break;
-                        default:
-                            file_type = '.' + splitedbydotes[^1];
-                            num = pg.GetNumberOutOfString(f.Name, file_type);
-                            SeasonNum = (num / 50 + 1).ToString();
-                            if (num / 10 < 1)
-                            {
-                                if (Convert.ToInt32(SeasonNum) < 9)
-                                    SeasonName = "S0" + SeasonNum + "E0" + num.ToString();
-                                else
-                                    SeasonName = "S" + SeasonNum + "E0" + num.ToString();
-                            }
-                            else
-                            {
-                                if (Convert.ToInt32(SeasonNum) < 9)
-                                    SeasonName = "S0" + SeasonNum + "E" + num.ToString();
-                                else
-                                    SeasonName = "S" + SeasonNum + "E" + num.ToString();
-                            }
-                            string NewPath = path + "Season " + SeasonNum + '\\';
-                            if (!Directory.Exists(NewPath))
-                            {
-                                Directory.CreateDirectory(NewPath);
-                                Console.ForegroundColor = ConsoleColor.Green;
-                                Console.WriteLine("Season " + SeasonNum + " folder Created");
+                                File.Move(f.FullName, NewPath + f.Name);
+                                Console.WriteLine(f.Name + " Already exist");
                                 Console.ResetColor();
+                                break;
                             }
-                            File.Move(f.FullName, NewPath + SeasonName + file_type);
-                            Console.WriteLine(num.ToString() + " Complete");
-                            Console.WriteLine();
-                            break;
+                        default:
+                            try
+                            {
+                                file_type = '.' + splitedbydotes[^1];
+                                num = pg.GetNumberOutOfString(f.Name, file_type);
+                                SeasonNum = (num / 50 + 1).ToString();
+                                if (num / 10 < 1)
+                                {
+                                    if (splitedbyspace[1] == "00" || splitedbyspace[1].ToLower() == "specials")
+                                        SeasonName = "S" + SeasonNum + "E0" + num.ToString();
+                                    else if (Convert.ToInt32(splitedbyspace[1]) < 9)
+                                        SeasonName = "S0" + SeasonNum + "E0" + num.ToString();
+                                    else
+                                        SeasonName = "S" + SeasonNum + "E0" + num.ToString();
+                                }
+                                else
+                                {
+                                    if (splitedbyspace[1] == "00" || splitedbyspace[1].ToLower() == "specials")
+                                        SeasonName = "S" + SeasonNum + "E" + num.ToString();
+                                    else if (Convert.ToInt32(splitedbyspace[1]) < 9)
+                                        SeasonName = "S0" + SeasonNum + "E" + num.ToString();
+                                    else
+                                        SeasonName = "S" + SeasonNum + "E" + num.ToString();
+                                }
+                                NewPath = path + "Season " + SeasonNum + '\\';
+                                if (!Directory.Exists(NewPath))
+                                {
+                                    Directory.CreateDirectory(NewPath);
+                                    Console.ForegroundColor = ConsoleColor.Green;
+                                    Console.WriteLine("Season " + SeasonNum + " folder Created");
+                                    Console.ResetColor();
+                                }
+                                File.Move(f.FullName, NewPath + SeasonName + file_type);
+                                Console.WriteLine(num.ToString() + " Complete");
+                                Console.WriteLine();
+                                break;
+                            }
+                            catch (IOException)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                NewPath = f.DirectoryName + '\\' + "-[NameAlreadyExist]-" + '\\';
+                                if (!Directory.Exists(NewPath))
+                                {
+                                    Directory.CreateDirectory(NewPath);
+                                    Console.WriteLine("Execption Folder Created");
+                                }
+                                File.Move(f.FullName, NewPath + f.Name);
+                                Console.WriteLine(f.Name + " Already exist");
+                                Console.ResetColor();
+                                break;
+                            }
                     }
                 }
 

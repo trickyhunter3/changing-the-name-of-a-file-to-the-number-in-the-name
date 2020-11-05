@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\denis\\Documents\\GitHub\\changing-the-name-of-a-file-to-the-number-in-the-name\\ChangeNameV2\\ChangeNameV2\\ChangeNameV2.csproj": {}
+    "C:\\Users\\Tatjana Nemova\\Documents\\GitHub\\Changing-files-names-in-folder\\ChangeNameV2\\ChangeNameV2\\ChangeNameV2.csproj": {}
   },
   "projects": {
-    "C:\\Users\\denis\\Documents\\GitHub\\changing-the-name-of-a-file-to-the-number-in-the-name\\ChangeNameV2\\ChangeNameV2\\ChangeNameV2.csproj": {
+    "C:\\Users\\Tatjana Nemova\\Documents\\GitHub\\Changing-files-names-in-folder\\ChangeNameV2\\ChangeNameV2\\ChangeNameV2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\denis\\Documents\\GitHub\\changing-the-name-of-a-file-to-the-number-in-the-name\\ChangeNameV2\\ChangeNameV2\\ChangeNameV2.csproj",
+        "projectUniqueName": "C:\\Users\\Tatjana Nemova\\Documents\\GitHub\\Changing-files-names-in-folder\\ChangeNameV2\\ChangeNameV2\\ChangeNameV2.csproj",
         "projectName": "ChangeNameV2",
-        "projectPath": "C:\\Users\\denis\\Documents\\GitHub\\changing-the-name-of-a-file-to-the-number-in-the-name\\ChangeNameV2\\ChangeNameV2\\ChangeNameV2.csproj",
-        "packagesPath": "C:\\Users\\denis\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\denis\\Documents\\GitHub\\changing-the-name-of-a-file-to-the-number-in-the-name\\ChangeNameV2\\ChangeNameV2\\obj\\",
+        "projectPath": "C:\\Users\\Tatjana Nemova\\Documents\\GitHub\\Changing-files-names-in-folder\\ChangeNameV2\\ChangeNameV2\\ChangeNameV2.csproj",
+        "packagesPath": "C:\\Users\\Tatjana Nemova\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Tatjana Nemova\\Documents\\GitHub\\Changing-files-names-in-folder\\ChangeNameV2\\ChangeNameV2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\denis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Tatjana Nemova\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
