@@ -99,18 +99,14 @@ namespace ChangeNameV2
                                 SeasonNum = (num / 50 + 1).ToString();
                                 if (num / 10 < 1)
                                 {
-                                    if (splitedbyspace[1] == "00" || splitedbyspace[1].ToLower() == "specials")
-                                        SeasonName = "S" + SeasonNum + "E0" + num.ToString();
-                                    else if (Convert.ToInt32(splitedbyspace[1]) < 9)
+                                    if (Convert.ToInt32(SeasonNum) < 9)
                                         SeasonName = "S0" + SeasonNum + "E0" + num.ToString();
                                     else
                                         SeasonName = "S" + SeasonNum + "E0" + num.ToString();
                                 }
                                 else
                                 {
-                                    if (splitedbyspace[1] == "00" || splitedbyspace[1].ToLower() == "specials")
-                                        SeasonName = "S" + SeasonNum + "E" + num.ToString();
-                                    else if (Convert.ToInt32(splitedbyspace[1]) < 9)
+                                    if (Convert.ToInt32(SeasonNum) < 9)
                                         SeasonName = "S0" + SeasonNum + "E" + num.ToString();
                                     else
                                         SeasonName = "S" + SeasonNum + "E" + num.ToString();
