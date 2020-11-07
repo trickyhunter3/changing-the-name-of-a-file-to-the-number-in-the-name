@@ -11,8 +11,10 @@ namespace ChangeNameV2
             {
                 string file_type;
                 Program pg = new Program();
-                Console.WriteLine("640p 720p 1080p 2160p , if the file has different resolution on the name\n" +
-                    "then change a bit the source code so it will filter it\n");
+                Console.WriteLine("640,720,1080,2160,2010,1920 if in the name of the file\n" +
+                    "there are those numbers\n" +
+                    "then it will filter them if you want more numbers to filter then change the code\n" +
+                    "in the function 'GetNumberOutOfString'\n");
             START:;
                 Console.Write("Enter a Path: ");
                 string path = Console.ReadLine();
@@ -74,7 +76,7 @@ namespace ChangeNameV2
                                         SeasonName = "S" + SeasonNum + "E" + num.ToString();
                                 }
                                 File.Move(f.FullName, path + SeasonName + file_type);
-                                Console.WriteLine(num.ToString() + " Complete");
+                                Console.WriteLine("{0} Complete - {1}", num.ToString(), f.Name);
                                 break;
                             }
                             catch (IOException)
@@ -120,7 +122,7 @@ namespace ChangeNameV2
                                     Console.ResetColor();
                                 }
                                 File.Move(f.FullName, NewPath + SeasonName + file_type);
-                                Console.WriteLine(num.ToString() + " Complete");
+                                Console.WriteLine("{0} Complete - {1}",num.ToString(), f.Name);
                                 Console.WriteLine();
                                 break;
                             }
@@ -210,7 +212,9 @@ namespace ChangeNameV2
                                 case "640":
                                 case "720":
                                 case "1080":
+                                case "1920":
                                 case "2160":
+                                case "2010":
                                     if (number_holder == 0)
                                     {
                                         goto END;
