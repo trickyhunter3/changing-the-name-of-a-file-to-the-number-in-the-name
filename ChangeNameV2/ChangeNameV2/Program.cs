@@ -38,6 +38,7 @@ namespace ChangeNameV2
                 //get all the file info from the folder
                 foreach (FileInfo f in infos)
                 {
+                    string parentName = f.Directory.Parent.Name;
                     string NewPath;
                     string SeasonName;
                     string SeasonNum;
@@ -75,6 +76,7 @@ namespace ChangeNameV2
                                     else
                                         SeasonName = "S" + SeasonNum + "E" + num.ToString();
                                 }
+                                SeasonName = parentName + " - " + SeasonName;
                                 File.Move(f.FullName, path + SeasonName + file_type);
                                 Console.WriteLine("{0} Complete - {1}", num.ToString(), f.Name);
                                 break;
@@ -114,6 +116,7 @@ namespace ChangeNameV2
                                         SeasonName = "S" + SeasonNum + "E" + num.ToString();
                                 }
                                 NewPath = path + "Season " + SeasonNum + '\\';
+                                SeasonName = parentName + " - " + SeasonName;
                                 if (!Directory.Exists(NewPath))
                                 {
                                     Directory.CreateDirectory(NewPath);
