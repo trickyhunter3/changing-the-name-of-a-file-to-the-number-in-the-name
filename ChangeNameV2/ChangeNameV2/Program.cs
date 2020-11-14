@@ -5,10 +5,16 @@ namespace ChangeNameV2
 {
     class Program
     {
+        int[] numfilter;
+        bool nedfilter = false;
         static void Main()
         {
             try
             {
+                string FilterNumbers = null;
+                bool FilterMore = true;
+                bool NeedFilter = false;
+                string FilterAnswer;
                 string file_type;
                 Program pg = new Program();
                 Console.WriteLine("640,720,1080,2160,2010,1920 if in the name of the file\n" +
@@ -31,6 +37,32 @@ namespace ChangeNameV2
                     Console.WriteLine("Important folder\nDon't touch");
                     Console.ResetColor();
                     goto START;
+                }
+                Console.WriteLine("The episode number is first number or later? (first - f, later - anything else)");
+                string NumberSide = Console.ReadLine();
+                while (FilterMore)
+                {
+                    Console.WriteLine("Do You Want To Add numbers to filter? (Y,N)");
+                    FilterAnswer =Console.ReadLine();
+                    if(FilterAnswer == "N"|| FilterAnswer == "n")
+                    {
+                        FilterMore = false;
+                    }
+                    else
+                    {
+                        NeedFilter = true;
+                        Console.WriteLine("What number to filter? please dont add spaces");
+                        FilterNumbers += Console.ReadLine() + ' ';
+                        pg.nedfilter = true;
+                    }
+                }
+                if (NeedFilter)
+                {
+                    string[] StringToFilter = FilterNumbers.Split(" ");
+                    int[] NumbersToFilter = new int[StringToFilter.Length - 1];
+                    for (int i = 0; i < StringToFilter.Length - 1; i++)
+                        NumbersToFilter[i] = Convert.ToInt32(StringToFilter[i]);
+                    pg.numfilter = NumbersToFilter;
                 }
                 Console.Clear();
                 DirectoryInfo d = new DirectoryInfo(path);
@@ -56,7 +88,7 @@ namespace ChangeNameV2
                             try
                             {
                                 file_type = '.' + splitedbydotes[^1];
-                                num = pg.GetNumberOutOfString(f.Name, file_type);
+                                num = pg.GetNumberOutOfString(f.Name, file_type, NumberSide);
                                 SeasonNum = splitedbyspace[1];
                                 if (num / 10 < 1)
                                 {
@@ -99,7 +131,7 @@ namespace ChangeNameV2
                             try
                             {
                                 file_type = '.' + splitedbydotes[^1];
-                                num = pg.GetNumberOutOfString(f.Name, file_type);
+                                num = pg.GetNumberOutOfString(f.Name, file_type, NumberSide);
                                 SeasonNum = (num / 50 + 1).ToString();
                                 if (num / 10 < 1)
                                 {
@@ -159,7 +191,7 @@ namespace ChangeNameV2
                 Console.ReadLine();
             }
         }
-        public int GetNumberOutOfString(string File_name, string file_type)
+        public int GetNumberOutOfString(string File_name, string file_type, string Side)
         {
             // j is current index of the file_name
             int converted = 0;
@@ -192,6 +224,8 @@ namespace ChangeNameV2
                     default:
                         if (numbers_together != 0)
                         {
+                            if (Side == "f")
+                                return Convert.ToInt32(numbers);
                             if (numbers + file_type == File_name)
                             {
                                 converted = Convert.ToInt32(numbers);
@@ -201,6 +235,21 @@ namespace ChangeNameV2
                             }
                             if (numbers == "0")
                                 number_holder = 0;
+                            if (nedfilter)
+                            {
+                                for (int i = 0; i < numfilter.Length; i++)
+                                {
+                                    if (numfilter[i] == Convert.ToInt32(numbers))
+                                    {
+                                        if (number_holder == 0)
+                                        {
+                                            goto END;
+                                        }
+                                        number_holder = Convert.ToInt32(numbers);
+                                        goto END;
+                                    }
+                                }
+                            }
                             switch (numbers)
                             {
                                 case "1":
