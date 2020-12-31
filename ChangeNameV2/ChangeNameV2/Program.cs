@@ -5,150 +5,154 @@ namespace ChangeNameV2
 {
     class Program
     {
-        int[] numfilter;
-        bool nedfilter = false;
+        int[] numFilter;
+        bool needFilter = false;
         static void Main()
         {
             try
             {
-                string FilterNumbers = null;
-                bool FilterMore = true;
-                bool NeedFilter = false;
-                string FilterAnswer;
-                string file_type;
-                Program pg = new Program();
-                Console.WriteLine("640,720,1080,2160,2010,1920 if in the name of the file\n" +
-                    "there are those numbers\n" +
-                    "then it will filter them if you want more numbers to filter then change the code\n" +
-                    "in the function 'GetNumberOutOfString'\n");
+                Program program = new Program();
+
+                // numbers that will be filtered
+                string filterNumbers = null;
+
+                string fileType;
+
+                Console.WriteLine("Read the \"ReadME\" file to know which numbers this filters");
+
             START:;
+
                 Console.Write("Enter a Path: ");
-                string path = Console.ReadLine();
-                if (path == "")
+                string usersPath = Console.ReadLine();
+
+                // 
+                if (usersPath == "")
                     goto START;
-                if (path[^1] != '\\')
-                    path += '\\';
-                if (path == @"C:\" ||
-                    path == @"C:\Program Files (x86)\" ||
-                    path == @"C:\Program Files\" ||
-                    path == @"C:\Windows\")
+                if (usersPath[^1] != '\\')
+                    usersPath += '\\';
+                if (usersPath == @"C:\" || usersPath == @"C:\Program Files (x86)\" || usersPath == @"C:\Program Files\" || usersPath == @"C:\Windows\")
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Important folder\nDon't touch");
                     Console.ResetColor();
                     goto START;
                 }
-                Console.WriteLine("The episode number is first number or later? (first - f, later - anything else)");
-                string NumberSide = Console.ReadLine();
-                while (FilterMore)
+
+                Console.WriteLine("The episode number is first number or later? (First - f, later - anything else)");
+
+                string numberSide = Console.ReadLine();
+
+                // The User's choice to answer
+                string filterAnswer;
+
+                Console.WriteLine("Do You Want To Add numbers to filter? (Y,N)");
+                filterAnswer =Console.ReadLine();
+                if (filterAnswer.ToLower() != "n")
                 {
-                    Console.WriteLine("Do You Want To Add numbers to filter? (Y,N)");
-                    FilterAnswer =Console.ReadLine();
-                    if(FilterAnswer == "N"|| FilterAnswer == "n")
-                    {
-                        FilterMore = false;
-                    }
-                    else
-                    {
-                        NeedFilter = true;
-                        Console.WriteLine("What number to filter? please dont add spaces");
-                        FilterNumbers += Console.ReadLine() + ' ';
-                        pg.nedfilter = true;
-                    }
-                }
-                if (NeedFilter)
-                {
-                    string[] StringToFilter = FilterNumbers.Split(" ");
+                    filterNumbers = program.FilterInterface();   
+                    
+                    string[] StringToFilter = filterNumbers.Split(" ");
                     int[] NumbersToFilter = new int[StringToFilter.Length - 1];
                     for (int i = 0; i < StringToFilter.Length - 1; i++)
                         NumbersToFilter[i] = Convert.ToInt32(StringToFilter[i]);
-                    pg.numfilter = NumbersToFilter;
+
+                    program.needFilter = true;
+                    program.numFilter = NumbersToFilter;
                 }
+
                 Console.Clear();
-                DirectoryInfo d = new DirectoryInfo(path);
-                FileInfo[] infos = d.GetFiles();
-                //get all the file info from the folder
-                foreach (FileInfo f in infos)
+                DirectoryInfo directoryInfo = new DirectoryInfo(usersPath);
+                FileInfo[] infos = directoryInfo.GetFiles();
+                //get all the files info from the folder
+                foreach (FileInfo fileInfo in infos)
                 {
-                    string parentName = f.Directory.Parent.Name;
+                    string seriesName = fileInfo.Directory.Parent.Name;
                     string NewPath;
-                    string SeasonName;
+                    string finalName;
                     string SeasonNum;
 
-                    int num;
-                    string[] splitedbydotes = f.FullName.Split('.');
+                    int numberFromTheString;
+                    fileType = '.' + fileInfo.Name.Split('.')[^1];
 
-                    string[] splitedbyslash = f.Directory.FullName.Split('\\');
-                    string[] splitedbyspace = splitedbyslash[^1].Split(' ');
+                    string seasonWithNumber = fileInfo.Directory.Name;
+                    string[] seasonAndNumberSplited = seasonWithNumber.Split(' ');
 
                     //if the parent folder is season then there is no need for
-                    switch (splitedbyspace[0].ToLower())
+                    switch (seasonAndNumberSplited[0].ToLower())
                     {
                         case "season":
                             try
                             {
-                                file_type = '.' + splitedbydotes[^1];
-                                num = pg.GetNumberOutOfString(f.Name, file_type, NumberSide);
-                                SeasonNum = splitedbyspace[1];
-                                if (num / 10 < 1)
+                                numberFromTheString = program.GetNumberOutOfString(fileInfo.Name, fileType, numberSide);
+                                SeasonNum = seasonAndNumberSplited[1];
+
+                                if (numberFromTheString / 10 < 1)
                                 {
-                                    if (splitedbyspace[1] == "00" || splitedbyspace[1].ToLower() == "specials")
-                                        SeasonName = "S" + SeasonNum + "E0" + num.ToString();
-                                    else if (Convert.ToInt32(splitedbyspace[1]) < 9)
-                                        SeasonName = "S0" + SeasonNum + "E0" + num.ToString();
+                                    if (seasonAndNumberSplited[1] == "00" || seasonAndNumberSplited[1].ToLower() == "specials")
+                                        finalName = "S" + SeasonNum + "E0" + numberFromTheString.ToString();
+                                    else if (Convert.ToInt32(seasonAndNumberSplited[1]) < 9)
+                                        finalName = "S0" + SeasonNum + "E0" + numberFromTheString.ToString();
                                     else
-                                        SeasonName = "S" + SeasonNum + "E0" + num.ToString();
+                                        finalName = "S" + SeasonNum + "E0" + numberFromTheString.ToString();
                                 }
                                 else
                                 {
-                                    if (splitedbyspace[1] == "00" || splitedbyspace[1].ToLower() == "specials")
-                                        SeasonName = "S" + SeasonNum + "E" + num.ToString();
-                                    else if (Convert.ToInt32(splitedbyspace[1]) < 9)
-                                        SeasonName = "S0" + SeasonNum + "E" + num.ToString();
+                                    if (seasonAndNumberSplited[1] == "00" || seasonAndNumberSplited[1].ToLower() == "specials")
+                                        finalName = "S" + SeasonNum + "E" + numberFromTheString.ToString();
+                                    else if (Convert.ToInt32(seasonAndNumberSplited[1]) < 9)
+                                        finalName = "S0" + SeasonNum + "E" + numberFromTheString.ToString();
                                     else
-                                        SeasonName = "S" + SeasonNum + "E" + num.ToString();
+                                        finalName = "S" + SeasonNum + "E" + numberFromTheString.ToString();
                                 }
-                                SeasonName = parentName + " - " + SeasonName;
-                                File.Move(f.FullName, path + SeasonName + file_type);
-                                Console.WriteLine("{0} Complete - {1}", num.ToString(), f.Name);
+
+                                finalName = seriesName + " - " + finalName;
+                                File.Move(fileInfo.FullName, usersPath + finalName + fileType);
+
+                                Console.WriteLine("{0} Complete - {1}", numberFromTheString.ToString(), fileInfo.Name);
                                 break;
                             }
                             catch (IOException)
                             {
                                 Console.ForegroundColor = ConsoleColor.Red;
-                                NewPath = f.DirectoryName + '\\' + "-[NameAlreadyExist]-" + '\\';
+                                NewPath = fileInfo.DirectoryName + '\\' + "-[NameAlreadyExist]-" + '\\';
+
                                 if (!Directory.Exists(NewPath))
                                 {
                                     Directory.CreateDirectory(NewPath);
                                     Console.WriteLine("Execption Folder Created");
                                 }
-                                File.Move(f.FullName, NewPath + f.Name);
-                                Console.WriteLine(f.Name + " Already exist");
+
+                                File.Move(fileInfo.FullName, NewPath + fileInfo.Name);
+                                Console.WriteLine(fileInfo.Name + " Already exist");
                                 Console.ResetColor();
                                 break;
                             }
                         default:
                             try
                             {
-                                file_type = '.' + splitedbydotes[^1];
-                                num = pg.GetNumberOutOfString(f.Name, file_type, NumberSide);
-                                SeasonNum = (num / 50 + 1).ToString();
-                                if (num / 10 < 1)
+                                numberFromTheString = program.GetNumberOutOfString(fileInfo.Name, fileType, numberSide);
+
+                                //12 episodes a season setted by me
+                                SeasonNum = ((numberFromTheString / 13) + 1).ToString();
+
+                                if (numberFromTheString / 10 < 1)
                                 {
                                     if (Convert.ToInt32(SeasonNum) < 9)
-                                        SeasonName = "S0" + SeasonNum + "E0" + num.ToString();
+                                        finalName = "S0" + SeasonNum + "E0" + numberFromTheString.ToString();
                                     else
-                                        SeasonName = "S" + SeasonNum + "E0" + num.ToString();
+                                        finalName = "S" + SeasonNum + "E0" + numberFromTheString.ToString();
                                 }
                                 else
                                 {
                                     if (Convert.ToInt32(SeasonNum) < 9)
-                                        SeasonName = "S0" + SeasonNum + "E" + num.ToString();
+                                        finalName = "S0" + SeasonNum + "E" + numberFromTheString.ToString();
                                     else
-                                        SeasonName = "S" + SeasonNum + "E" + num.ToString();
+                                        finalName = "S" + SeasonNum + "E" + numberFromTheString.ToString();
                                 }
-                                NewPath = path + "Season " + SeasonNum + '\\';
-                                SeasonName = parentName + " - " + SeasonName;
+
+                                NewPath = usersPath + "Season " + SeasonNum + '\\';
+                                finalName = seriesName + " - " + finalName;
+
                                 if (!Directory.Exists(NewPath))
                                 {
                                     Directory.CreateDirectory(NewPath);
@@ -156,22 +160,25 @@ namespace ChangeNameV2
                                     Console.WriteLine("Season " + SeasonNum + " folder Created");
                                     Console.ResetColor();
                                 }
-                                File.Move(f.FullName, NewPath + SeasonName + file_type);
-                                Console.WriteLine("{0} Complete - {1}",num.ToString(), f.Name);
+
+                                File.Move(fileInfo.FullName, NewPath + finalName + fileType);
+                                Console.WriteLine("{0} Complete - {1}",numberFromTheString.ToString(), fileInfo.Name);
                                 Console.WriteLine();
                                 break;
                             }
                             catch (IOException)
                             {
                                 Console.ForegroundColor = ConsoleColor.Red;
-                                NewPath = f.DirectoryName + '\\' + "-[NameAlreadyExist]-" + '\\';
+                                NewPath = fileInfo.DirectoryName + '\\' + "-[NameAlreadyExist]-" + '\\';
+
                                 if (!Directory.Exists(NewPath))
                                 {
                                     Directory.CreateDirectory(NewPath);
                                     Console.WriteLine("Execption Folder Created");
                                 }
-                                File.Move(f.FullName, NewPath + f.Name);
-                                Console.WriteLine(f.Name + " Already exist");
+
+                                File.Move(fileInfo.FullName, NewPath + fileInfo.Name);
+                                Console.WriteLine(fileInfo.Name + " Already exist");
                                 Console.ResetColor();
                                 break;
                             }
@@ -235,11 +242,11 @@ namespace ChangeNameV2
                             }
                             if (numbers == "0")
                                 number_holder = 0;
-                            if (nedfilter)
+                            if (needFilter)
                             {
-                                for (int i = 0; i < numfilter.Length; i++)
+                                for (int i = 0; i < numFilter.Length; i++)
                                 {
-                                    if (numfilter[i] == Convert.ToInt32(numbers))
+                                    if (numFilter[i] == Convert.ToInt32(numbers))
                                     {
                                         if (number_holder == 0)
                                         {
@@ -286,6 +293,21 @@ namespace ChangeNameV2
                 return number_holder;
             //converted + num = num that means that the season or resolution filter worked but was not necessery
             return converted;
+        }
+
+        private string FilterInterface()
+        {
+            string filterNumbers = null;
+
+            while (true)
+            {
+                Console.WriteLine("What number to filter? Leave blank or type n to close");
+                string filterNumbersHelper = Console.ReadLine();
+                if (filterNumbersHelper == "" || filterNumbersHelper.ToLower() == "n")
+                    return filterNumbers;
+
+                filterNumbers += filterNumbersHelper + ' ';
+            }
         }
     }
 }
