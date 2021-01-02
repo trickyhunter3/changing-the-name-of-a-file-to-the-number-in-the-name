@@ -42,7 +42,7 @@ namespace ChangeNameV2
                 DirectoryInfo directoryInfo = new DirectoryInfo(usersPath);
                 FileInfo[] infos = directoryInfo.GetFiles();
 
-                Console.WriteLine("The episode number is first number or later? (First - f, later - anything else)");
+                Console.WriteLine("The episode number is first number or the Season number (press - first - f ,anything else)");
 
                 string numberSide = Console.ReadLine();
 
