@@ -55,13 +55,13 @@ namespace ChangeNameV2
                 {
                     filterNumbers = program.FilterInterface();   
                     
-                    string[] StringToFilter = filterNumbers.Split(" ");
-                    int[] NumbersToFilter = new int[StringToFilter.Length - 1];
-                    for (int i = 0; i < StringToFilter.Length - 1; i++)
-                        NumbersToFilter[i] = Convert.ToInt32(StringToFilter[i]);
+                    string[] stringToFilter = filterNumbers.Split(" ");
+                    int[] numbersToFilter = new int[stringToFilter.Length - 1];
+                    for (int i = 0; i < stringToFilter.Length - 1; i++)
+                        numbersToFilter[i] = Convert.ToInt32(stringToFilter[i]);
 
                     program.needFilter = true;
-                    program.numFilter = NumbersToFilter;
+                    program.numFilter = numbersToFilter;
                 }
 
                 Console.Clear();
@@ -69,122 +69,129 @@ namespace ChangeNameV2
                 //get all the files info from the folder
                 foreach (FileInfo fileInfo in infos)
                 {
-                    string seriesName = fileInfo.Directory.Parent.Name;
-                    string NewPath;
-                    string finalName;
-                    string SeasonNum;
-
-                    int numberFromTheString;
-                    fileType = '.' + fileInfo.Name.Split('.')[^1];
-
-                    string seasonWithNumber = fileInfo.Directory.Name;
-                    string[] seasonAndNumberSplited = seasonWithNumber.Split(' ');
-
-                    //if the parent folder is season then there is no need for
-                    switch (seasonAndNumberSplited[0].ToLower())
+                    if (!program.IsFileLocked(fileInfo))
                     {
-                        case "season":
-                            try
-                            {
-                                numberFromTheString = program.GetNumberOutOfString(fileInfo.Name, fileType, numberSide);
-                                SeasonNum = seasonAndNumberSplited[1];
+                        string seriesName = fileInfo.Directory.Parent.Name;
+                        string NewPath;
+                        string finalName;
+                        string SeasonNum;
 
-                                if (numberFromTheString / 10 < 1)
+                        int numberFromTheString;
+                        fileType = '.' + fileInfo.Name.Split('.')[^1];
+
+                        string seasonWithNumber = fileInfo.Directory.Name;
+                        string[] seasonAndNumberSplited = seasonWithNumber.Split(' ');
+
+                        //if the parent folder is season then there is no need for
+                        switch (seasonAndNumberSplited[0].ToLower())
+                        {
+                            case "season":
+                                try
                                 {
-                                    if (seasonAndNumberSplited[1] == "00" || seasonAndNumberSplited[1].ToLower() == "specials")
-                                        finalName = "S" + SeasonNum + "E0" + numberFromTheString.ToString();
-                                    else if (Convert.ToInt32(seasonAndNumberSplited[1]) < 9)
-                                        finalName = "S0" + SeasonNum + "E0" + numberFromTheString.ToString();
+                                    numberFromTheString = program.GetNumberOutOfString(fileInfo.Name, fileType, numberSide);
+                                    SeasonNum = seasonAndNumberSplited[1];
+
+                                    if (numberFromTheString / 10 < 1)
+                                    {
+                                        if (seasonAndNumberSplited[1] == "00" || seasonAndNumberSplited[1].ToLower() == "specials")
+                                            finalName = "S" + SeasonNum + "E0" + numberFromTheString.ToString();
+                                        else if (Convert.ToInt32(seasonAndNumberSplited[1]) < 9)
+                                            finalName = "S0" + SeasonNum + "E0" + numberFromTheString.ToString();
+                                        else
+                                            finalName = "S" + SeasonNum + "E0" + numberFromTheString.ToString();
+                                    }
                                     else
-                                        finalName = "S" + SeasonNum + "E0" + numberFromTheString.ToString();
+                                    {
+                                        if (seasonAndNumberSplited[1] == "00" || seasonAndNumberSplited[1].ToLower() == "specials")
+                                            finalName = "S" + SeasonNum + "E" + numberFromTheString.ToString();
+                                        else if (Convert.ToInt32(seasonAndNumberSplited[1]) < 9)
+                                            finalName = "S0" + SeasonNum + "E" + numberFromTheString.ToString();
+                                        else
+                                            finalName = "S" + SeasonNum + "E" + numberFromTheString.ToString();
+                                    }
+
+                                    finalName = seriesName + " - " + finalName;
+                                    File.Move(fileInfo.FullName, usersPath + finalName + fileType);
+
+                                    Console.WriteLine("{0} Complete \\\\ {1}", numberFromTheString.ToString(), fileInfo.Name);
+                                    break;
                                 }
-                                else
+                                catch (IOException)
                                 {
-                                    if (seasonAndNumberSplited[1] == "00" || seasonAndNumberSplited[1].ToLower() == "specials")
-                                        finalName = "S" + SeasonNum + "E" + numberFromTheString.ToString();
-                                    else if (Convert.ToInt32(seasonAndNumberSplited[1]) < 9)
-                                        finalName = "S0" + SeasonNum + "E" + numberFromTheString.ToString();
-                                    else
-                                        finalName = "S" + SeasonNum + "E" + numberFromTheString.ToString();
-                                }
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    NewPath = fileInfo.DirectoryName + '\\' + "-[NameAlreadyExist]-" + '\\';
 
-                                finalName = seriesName + " - " + finalName;
-                                File.Move(fileInfo.FullName, usersPath + finalName + fileType);
+                                    if (!Directory.Exists(NewPath))
+                                    {
+                                        Directory.CreateDirectory(NewPath);
+                                        Console.WriteLine("Execption Folder Created");
+                                    }
 
-                                Console.WriteLine("{0} Complete - {1}", numberFromTheString.ToString(), fileInfo.Name);
-                                break;
-                            }
-                            catch (IOException)
-                            {
-                                Console.ForegroundColor = ConsoleColor.Red;
-                                NewPath = fileInfo.DirectoryName + '\\' + "-[NameAlreadyExist]-" + '\\';
-
-                                if (!Directory.Exists(NewPath))
-                                {
-                                    Directory.CreateDirectory(NewPath);
-                                    Console.WriteLine("Execption Folder Created");
-                                }
-
-                                File.Move(fileInfo.FullName, NewPath + fileInfo.Name);
-                                Console.WriteLine(fileInfo.Name + " Already exist");
-                                Console.ResetColor();
-                                break;
-                            }
-                        default:
-                            try
-                            {
-                                numberFromTheString = program.GetNumberOutOfString(fileInfo.Name, fileType, numberSide);
-
-                                //12 episodes a season setted by me
-                                SeasonNum = ((numberFromTheString / 13) + 1).ToString();
-
-                                if (numberFromTheString / 10 < 1)
-                                {
-                                    if (Convert.ToInt32(SeasonNum) < 9)
-                                        finalName = "S0" + SeasonNum + "E0" + numberFromTheString.ToString();
-                                    else
-                                        finalName = "S" + SeasonNum + "E0" + numberFromTheString.ToString();
-                                }
-                                else
-                                {
-                                    if (Convert.ToInt32(SeasonNum) < 9)
-                                        finalName = "S0" + SeasonNum + "E" + numberFromTheString.ToString();
-                                    else
-                                        finalName = "S" + SeasonNum + "E" + numberFromTheString.ToString();
-                                }
-
-                                NewPath = usersPath + "Season " + SeasonNum + '\\';
-                                finalName = seriesName + " - " + finalName;
-
-                                if (!Directory.Exists(NewPath))
-                                {
-                                    Directory.CreateDirectory(NewPath);
-                                    Console.ForegroundColor = ConsoleColor.Green;
-                                    Console.WriteLine("Season " + SeasonNum + " folder Created");
+                                    File.Move(fileInfo.FullName, NewPath + fileInfo.Name);
+                                    Console.WriteLine(fileInfo.Name + " Already exist");
                                     Console.ResetColor();
+                                    break;
                                 }
-
-                                File.Move(fileInfo.FullName, NewPath + finalName + fileType);
-                                Console.WriteLine("{0} Complete - {1}",numberFromTheString.ToString(), fileInfo.Name);
-                                Console.WriteLine();
-                                break;
-                            }
-                            catch (IOException)
-                            {
-                                Console.ForegroundColor = ConsoleColor.Red;
-                                NewPath = fileInfo.DirectoryName + '\\' + "-[NameAlreadyExist]-" + '\\';
-
-                                if (!Directory.Exists(NewPath))
+                            default:
+                                try
                                 {
-                                    Directory.CreateDirectory(NewPath);
-                                    Console.WriteLine("Execption Folder Created");
-                                }
+                                    numberFromTheString = program.GetNumberOutOfString(fileInfo.Name, fileType, numberSide);
 
-                                File.Move(fileInfo.FullName, NewPath + fileInfo.Name);
-                                Console.WriteLine(fileInfo.Name + " Already exist");
-                                Console.ResetColor();
-                                break;
-                            }
+                                    //12 episodes a season setted by me
+                                    SeasonNum = ((numberFromTheString / 13) + 1).ToString();
+
+                                    if (numberFromTheString / 10 < 1)
+                                    {
+                                        if (Convert.ToInt32(SeasonNum) < 9)
+                                            finalName = "S0" + SeasonNum + "E0" + numberFromTheString.ToString();
+                                        else
+                                            finalName = "S" + SeasonNum + "E0" + numberFromTheString.ToString();
+                                    }
+                                    else
+                                    {
+                                        if (Convert.ToInt32(SeasonNum) < 9)
+                                            finalName = "S0" + SeasonNum + "E" + numberFromTheString.ToString();
+                                        else
+                                            finalName = "S" + SeasonNum + "E" + numberFromTheString.ToString();
+                                    }
+
+                                    NewPath = usersPath + "Season " + SeasonNum + '\\';
+                                    finalName = seriesName + " - " + finalName;
+
+                                    if (!Directory.Exists(NewPath))
+                                    {
+                                        Directory.CreateDirectory(NewPath);
+                                        Console.ForegroundColor = ConsoleColor.Green;
+                                        Console.WriteLine("Season " + SeasonNum + " folder Created");
+                                        Console.ResetColor();
+                                    }
+
+                                    File.Move(fileInfo.FullName, NewPath + finalName + fileType);
+                                    Console.WriteLine("{0} Complete - {1}", numberFromTheString.ToString(), fileInfo.Name);
+                                    Console.WriteLine();
+                                    break;
+                                }
+                                catch (IOException)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    NewPath = fileInfo.DirectoryName + '\\' + "-[NameAlreadyExist]-" + '\\';
+
+                                    if (!Directory.Exists(NewPath))
+                                    {
+                                        Directory.CreateDirectory(NewPath);
+                                        Console.WriteLine("Execption Folder Created");
+                                    }
+
+                                    File.Move(fileInfo.FullName, NewPath + fileInfo.Name);
+                                    Console.WriteLine(fileInfo.Name + " Already exist");
+                                    Console.ResetColor();
+                                    break;
+                                }
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("{0} is being used", fileInfo.Name);
                     }
                 }
 
@@ -201,9 +208,10 @@ namespace ChangeNameV2
                 Console.ReadLine();
             }
         }
+
         public int GetNumberOutOfString(string File_name, string file_type, string Side)
         {
-            // j is current index of the file_name
+            // j is current index of the file_name (outdated) <--
             int converted = 0;
             //if we find a number that is episode then i++ happen so we save the episode number and 
             //on the next run when it find a season number or resoulution number it will go to 0 on the next int not on the
@@ -311,6 +319,28 @@ namespace ChangeNameV2
 
                 filterNumbers += filterNumbersHelper + ' ';
             }
+        }
+
+        protected virtual bool IsFileLocked(FileInfo file)
+        {
+            try
+            {
+                using (FileStream stream = file.Open(FileMode.Open, FileAccess.Read, FileShare.None))
+                {
+                    stream.Close();
+                }
+            }
+            catch (IOException)
+            {
+                //the file is unavailable because it is:
+                //still being written to
+                //or being processed by another thread
+                //or does not exist (has already been processed)
+                return true;
+            }
+
+            //file is not locked
+            return false;
         }
     }
 }
