@@ -71,6 +71,8 @@ namespace ChangeNameV2
                 {
                     if (!program.IsFileLocked(fileInfo))
                     {
+                        if (fileInfo.Name == "desktop.ini" || fileInfo.Name == "icon.ico")
+                            goto END;
                         string seriesName = fileInfo.Directory.Parent.Name;
                         string NewPath;
                         string finalName;
@@ -193,6 +195,7 @@ namespace ChangeNameV2
                     {
                         Console.WriteLine("{0} is being used", fileInfo.Name);
                     }
+                END:;
                 }
 
                 Console.ReadLine();
