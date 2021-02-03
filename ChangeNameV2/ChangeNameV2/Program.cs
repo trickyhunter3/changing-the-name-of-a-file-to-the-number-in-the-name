@@ -55,6 +55,10 @@ namespace ChangeNameV2
                 {
                     filterNumbers = program.FilterInterface();   
                     
+                    if (filterNumbers == null)
+                    {
+                        goto AFTERFILTER;
+                    }
                     string[] stringToFilter = filterNumbers.Split(" ");
                     int[] numbersToFilter = new int[stringToFilter.Length - 1];
                     for (int i = 0; i < stringToFilter.Length - 1; i++)
@@ -63,6 +67,7 @@ namespace ChangeNameV2
                     program.needFilter = true;
                     program.numFilter = numbersToFilter;
                 }
+            AFTERFILTER:;
 
                 Console.Clear();
 
@@ -71,6 +76,7 @@ namespace ChangeNameV2
                 {
                     if (!program.IsFileLocked(fileInfo))
                     {
+                        //filter this files, no need to rename them
                         if (fileInfo.Name == "desktop.ini" || fileInfo.Name == "icon.ico")
                             goto END;
                         string seriesName = fileInfo.Directory.Parent.Name;
@@ -214,7 +220,7 @@ namespace ChangeNameV2
 
         public int GetNumberOutOfString(string File_name, string file_type, string Side)
         {
-            // j is current index of the file_name (outdated) <--
+            // j is current index of the file_name 
             int converted = 0;
             //if we find a number that is episode then i++ happen so we save the episode number and 
             //on the next run when it find a season number or resoulution number it will go to 0 on the next int not on the
